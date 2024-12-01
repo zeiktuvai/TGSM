@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35312.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICOM.TGSM.Data", "ICOM.TGSM.Data\ICOM.TGSM.Data.csproj", "{CC0B3E3B-27DE-4EBC-9A04-9C5D5F55E5A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICOM.TGSM.Models", "ICOM.TGSM.Models\ICOM.TGSM.Models.csproj", "{F2D931C9-C810-4076-A9E2-055D8255FFD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICOM.TGSM.Service", "ICOM.TGSM.Service\ICOM.TGSM.Service.csproj", "{6318A0C0-BA4D-4192-9080-3FA78D909C43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICOM.TGSM.Agent.Win", "ICOM.TGSM.Agent.Win\ICOM.TGSM.Agent.Win.csproj", "{1921C39E-164D-4B00-A1C4-13E31EAD788B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICOM.TGSM.Web", "ICOM.TGSM.Web\ICOM.TGSM.Web\ICOM.TGSM.Web.csproj", "{3744774C-4B20-40C6-BCD6-334AEA33F7AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICOM.TGSM.Web.Client", "ICOM.TGSM.Web\ICOM.TGSM.Web.Client\ICOM.TGSM.Web.Client.csproj", "{61954D48-2652-4196-AEE4-F7E934C0D7B4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC0B3E3B-27DE-4EBC-9A04-9C5D5F55E5A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC0B3E3B-27DE-4EBC-9A04-9C5D5F55E5A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC0B3E3B-27DE-4EBC-9A04-9C5D5F55E5A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC0B3E3B-27DE-4EBC-9A04-9C5D5F55E5A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2D931C9-C810-4076-A9E2-055D8255FFD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2D931C9-C810-4076-A9E2-055D8255FFD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2D931C9-C810-4076-A9E2-055D8255FFD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2D931C9-C810-4076-A9E2-055D8255FFD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6318A0C0-BA4D-4192-9080-3FA78D909C43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6318A0C0-BA4D-4192-9080-3FA78D909C43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6318A0C0-BA4D-4192-9080-3FA78D909C43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6318A0C0-BA4D-4192-9080-3FA78D909C43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1921C39E-164D-4B00-A1C4-13E31EAD788B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1921C39E-164D-4B00-A1C4-13E31EAD788B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1921C39E-164D-4B00-A1C4-13E31EAD788B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1921C39E-164D-4B00-A1C4-13E31EAD788B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3744774C-4B20-40C6-BCD6-334AEA33F7AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3744774C-4B20-40C6-BCD6-334AEA33F7AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3744774C-4B20-40C6-BCD6-334AEA33F7AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3744774C-4B20-40C6-BCD6-334AEA33F7AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61954D48-2652-4196-AEE4-F7E934C0D7B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61954D48-2652-4196-AEE4-F7E934C0D7B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61954D48-2652-4196-AEE4-F7E934C0D7B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61954D48-2652-4196-AEE4-F7E934C0D7B4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {24C52C1D-2D3D-4431-85A7-6203B00EB5A2}
+	EndGlobalSection
+EndGlobal
