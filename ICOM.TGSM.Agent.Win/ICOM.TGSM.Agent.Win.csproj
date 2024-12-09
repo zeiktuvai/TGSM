@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+	<RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ICOM.TGSM.Models\ICOM.TGSM.Models.csproj" />
     <ProjectReference Include="..\ICOM.TGSM.Service\ICOM.TGSM.Service.csproj" />
   </ItemGroup>
 

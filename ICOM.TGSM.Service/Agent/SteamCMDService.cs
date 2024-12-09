@@ -1,7 +1,7 @@
 ﻿using GameServerManager.Models;
 using GameServerManager.Models.Request;
 using GameServerManager.Models.Servers;
-using GameServerManager.Services.Helpers;
+using ICOM.TGSM.Service.Agent.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameServerManager.Services
+namespace ICOM.TGSM.Service.Agent
 {
     public class SteamCMDService
     {
@@ -29,7 +29,7 @@ namespace GameServerManager.Services
                 {
                     FileHelper.CreateDirectory(GlobalConstants.SteamCommandPath);
                 }
-                
+
                 if (!FileHelper.CheckFileExists(GlobalConstants.SteamCommandPath + "\\steamcmd.exe"))
                 {
                     using (var client = new HttpClient())
@@ -41,7 +41,7 @@ namespace GameServerManager.Services
                     File.Delete(GlobalConstants.SteamCommandPath + "\\steamcmd.zip");
                 }
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 throw new IOException("Could not download steamCMD.");
             }
@@ -53,9 +53,9 @@ namespace GameServerManager.Services
         {
             if (!string.IsNullOrWhiteSpace(request.DownloadPath))
             {
-                if (!FileHelper.CheckDirectoryExists(request.DownloadPath))                    
+                if (!FileHelper.CheckDirectoryExists(request.DownloadPath))
                 {
-                    FileHelper.CreateDirectory(request.DownloadPath);                    
+                    FileHelper.CreateDirectory(request.DownloadPath);
                 }
 
                 var procReq = new ProcessRequest

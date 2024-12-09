@@ -4,7 +4,7 @@ using GameServerManager.Models.Request;
 using GameServerManager.Models.Servers;
 using System.Diagnostics;
 
-namespace GameServerManager.Services
+namespace ICOM.TGSM.Service.Agent
 {
     public class ProcessService
     {

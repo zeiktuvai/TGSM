@@ -2,11 +2,10 @@
 using GameServerManager.Data;
 using GameServerManager.Models;
 using GameServerManager.Models.Enums;
-using GameServerManager.Services.Helpers;
 using GameServerManager.Models.Request;
-using System.Diagnostics;
+using ICOM.TGSM.Service.Agent.Helpers;
 
-namespace GameServerManager.Services
+namespace ICOM.TGSM.Service.Agent
 {
     public class GameServerService
     {
@@ -28,7 +27,7 @@ namespace GameServerManager.Services
             List.Servers = _gsr.GetAllGameServers().ToList();
             List.Servers.ForEach(s => { s._PlayerStats = s._ServerPID != 0 ? SteamA2SHelper.A2S_INFO.GetServerStatistics(s) : "0/0"; });
         }
-        
+
         //TODO: why am I doing it like this?
         public GameServer SendSteamCMDAction(GameServer server, string serverBaseDir, ServerTypeEnum serverType, CredentialRequest? credential = null)
         {
@@ -42,12 +41,12 @@ namespace GameServerManager.Services
                     server.ServerWorkinDir = path;
                     //server.serverProc = new GameServerProcess { proc = SteamCMDHelper.DownloadUpdateNewServer(server) };             
                     break;
-                
+
                 case ServerTypeEnum.Arma_3:
                     path = GetNewServerDirectory(serverBaseDir, server.ServerType);
                     (server as ArmaServer).ServerBasePath = path;
                     server.ServerWorkinDir = path;
-                    server.serverProc = _scs.ExecuteSteamCMDRequest( new SteamCMDRequest
+                    server.serverProc = _scs.ExecuteSteamCMDRequest(new SteamCMDRequest
                     {
                         DownloadPath = path,
                         SteamAppId = (server as ArmaServer).SteamAppId,
@@ -59,7 +58,7 @@ namespace GameServerManager.Services
                     });
                     break;
             }
-            
+
             return server;
         }
 
@@ -78,10 +77,10 @@ namespace GameServerManager.Services
 
                 case ServerTypeEnum.Arma_3:
                     ArmaServer srvs = server as ArmaServer;
-                    
+
                     break;
             }
-                        
+
         }
 
         public bool AddExistingGameServer(string basePath, ServerTypeEnum serverType)
@@ -115,12 +114,12 @@ namespace GameServerManager.Services
                             ServerWorkinDir = basePath,
                             ServerPath = FileHelper.GetFilePath(basePath, "arma3server_x64.exe"),
                             ProfilePath = ".\\profile",
-                            ServerType = ServerTypeEnum.Arma_3,                            
+                            ServerType = ServerTypeEnum.Arma_3,
                         };
 
                         if (!List.Servers.Any(s => s.ServerPath == server.ServerPath))
                         {
-                            ArmaServerHelper.GetServerProperties((ArmaServer)server, basePath);                            
+                            ArmaServerHelper.GetServerProperties((ArmaServer)server, basePath);
                             _gsr.AddGameServer(server, ServerTypeEnum.Arma_3);
                             UpdateGameServers();
                             return true;
@@ -130,7 +129,7 @@ namespace GameServerManager.Services
             }
             return false;
         }
-      
+
         public void UpdateServer(GameServer server)
         {
             //if (server != null)
@@ -234,9 +233,9 @@ namespace GameServerManager.Services
 
             switch (server.ServerType)
             {
-                case ServerTypeEnum.Ground_Branch:                    
+                case ServerTypeEnum.Ground_Branch:
                     GBServer srv = (GBServer)server;
-                    req = new ProcessRequest { ExecutablePath = srv.ServerPath, WorkingDir = srv.ServerBasePath, Arguments = srv.GetProcessStartArgs() };                        
+                    req = new ProcessRequest { ExecutablePath = srv.ServerPath, WorkingDir = srv.ServerBasePath, Arguments = srv.GetProcessStartArgs() };
                     break;
                 case ServerTypeEnum.Operation_Harsh_Doorstop:
                     break;

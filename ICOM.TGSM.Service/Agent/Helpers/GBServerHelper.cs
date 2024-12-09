@@ -4,7 +4,7 @@ using System.IO;
 using System.Text;
 
 
-namespace GameServerManager.Services
+namespace ICOM.TGSM.Service.Agent.Helpers
 {
     public static class GBServerHelper
     {
@@ -16,7 +16,7 @@ namespace GameServerManager.Services
             {
                 var dir = Directory.GetFiles(path, "GroundBranchServer*.exe", SearchOption.AllDirectories).ToList();
 
-                if (dir != null && dir.Count > 0) 
+                if (dir != null && dir.Count > 0)
                 {
                     server.ServerPath = dir.Where(s => s.Contains("Win64")).First();
                     server.ServerBasePath = Path.GetDirectoryName(dir.Where(s => !s.Contains("Binaries")).First());
@@ -48,16 +48,16 @@ namespace GameServerManager.Services
                 else
                 {
                     throw new FileNotFoundException();
-                }                
+                }
             }
             catch (Exception)
             {
-                return "";                
+                return "";
             }
         }
 
         internal static GBServer RetrieveGBServerProperties(GBServer server)
-        {            
+        {
             server.RestartTime = 12;
 
             try
@@ -74,7 +74,7 @@ namespace GameServerManager.Services
             {
                 throw;
             }
-                        
+
             return server;
         }
 
@@ -162,7 +162,7 @@ namespace GameServerManager.Services
 
         internal static GBServer GetServerINIFile(GBServer server, string IniPath)
         {
-           
+
             string ServerConfigFile = "";
 
             if (File.Exists(IniPath))
