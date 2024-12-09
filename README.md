@@ -1,3 +1,1 @@
-# ICOM.TGSM
-
-Tactical Game Server Manager
+# Tactical Game Server Manager
