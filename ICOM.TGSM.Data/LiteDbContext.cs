@@ -10,7 +10,9 @@ namespace GameServerManager.Data
 
         public LiteDbContext(IOptions<LiteDbOptions> options)
         {
-            Database = new LiteDatabase(options.Value.DbLocation);
+            string dbPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) 
+                ?? throw new DirectoryNotFoundException("Application path could not be determined.");
+            Database = new LiteDatabase(dbPath + options.Value.DbLocation);
         }
 
     }

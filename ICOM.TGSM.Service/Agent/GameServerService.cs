@@ -25,7 +25,17 @@ namespace ICOM.TGSM.Service.Agent
         public void UpdateGameServers()
         {
             List.Servers = _gsr.GetAllGameServers().ToList();
-            List.Servers.ForEach(s => { s._PlayerStats = s._ServerPID != 0 ? SteamA2SHelper.A2S_INFO.GetServerStatistics(s) : "0/0"; });
+            //List.Servers.ForEach(s => { s._PlayerStats = s._ServerPID != 0 ? SteamA2SHelper.A2S_INFO.GetServerStatistics(s) : "0/0"; });
+        }
+
+        public IEnumerable<GameServer> GetServers()
+        {
+            return _gsr.GetAllGameServers();
+        }
+
+        public GameServer GetServer(int id)
+        {
+            return _gsr.GetGameServer(id);
         }
 
         //TODO: why am I doing it like this?
@@ -76,59 +86,59 @@ namespace ICOM.TGSM.Service.Agent
                     break;
 
                 case ServerTypeEnum.Arma_3:
-                    ArmaServer srvs = server as ArmaServer;
-
+                    ArmaServer srva = server as ArmaServer;
+                    _gsr.AddGameServer(srva, serverType);
                     break;
             }
 
         }
 
-        public bool AddExistingGameServer(string basePath, ServerTypeEnum serverType)
-        {
-            GameServer server = new();
+        //public bool AddExistingGameServer(string basePath, ServerTypeEnum serverType)
+        //{
+        //    GameServer server = new();
 
-            switch (serverType)
-            {
-                case ServerTypeEnum.Ground_Branch:
-                    server = GBServerHelper.FindGBServerExecutable(basePath);
-                    if (!List.Servers.Any(s => s.ServerPath == server.ServerPath))
-                    {
-                        server = GBServerHelper.RetrieveGBServerProperties((GBServer)server);
-                        server.ServerType = serverType;
-                        _gsr.AddGameServer(server, serverType);
-                        UpdateGameServers();
-                        return true;
-                    }
-                    else
-                    {
-                        throw new Exception("Server exists in collection.");
-                    }
+        //    switch (serverType)
+        //    {
+        //        case ServerTypeEnum.Ground_Branch:
+        //            server = GBServerHelper.FindGBServerExecutable(basePath);
+        //            if (!List.Servers.Any(s => s.ServerPath == server.ServerPath))
+        //            {
+        //                server = GBServerHelper.RetrieveGBServerProperties((GBServer)server);
+        //                server.ServerType = serverType;
+        //                _gsr.AddGameServer(server, serverType);
+        //                UpdateGameServers();
+        //                return true;
+        //            }
+        //            else
+        //            {
+        //                throw new Exception("Server exists in collection.");
+        //            }
 
-                case ServerTypeEnum.Arma_3:
-                    var exeFound = FileHelper.CheckFileExists(basePath + "\\arma3server_x64.exe");
-                    if (exeFound)
-                    {
-                        server = new ArmaServer
-                        {
-                            ServerBasePath = basePath,
-                            ServerWorkinDir = basePath,
-                            ServerPath = FileHelper.GetFilePath(basePath, "arma3server_x64.exe"),
-                            ProfilePath = ".\\profile",
-                            ServerType = ServerTypeEnum.Arma_3,
-                        };
+        //        case ServerTypeEnum.Arma_3:
+        //            var exeFound = FileHelper.CheckFileExists(basePath + "\\arma3server_x64.exe");
+        //            if (exeFound)
+        //            {
+        //                server = new ArmaServer
+        //                {
+        //                    ServerBasePath = basePath,
+        //                    ServerWorkinDir = basePath,
+        //                    ServerPath = FileHelper.GetFilePath(basePath, "arma3server_x64.exe"),
+        //                    ProfilePath = ".\\profile",
+        //                    ServerType = ServerTypeEnum.Arma_3,
+        //                };
 
-                        if (!List.Servers.Any(s => s.ServerPath == server.ServerPath))
-                        {
-                            ArmaServerHelper.GetServerProperties((ArmaServer)server, basePath);
-                            _gsr.AddGameServer(server, ServerTypeEnum.Arma_3);
-                            UpdateGameServers();
-                            return true;
-                        }
-                    }
-                    return false;
-            }
-            return false;
-        }
+        //                if (!List.Servers.Any(s => s.ServerPath == server.ServerPath))
+        //                {
+        //                    ArmaServerHelper.GetServerProperties((ArmaServer)server, basePath);
+        //                    _gsr.AddGameServer(server, ServerTypeEnum.Arma_3);
+        //                    UpdateGameServers();
+        //                    return true;
+        //                }
+        //            }
+        //            return false;
+        //    }
+        //    return false;
+        //}
 
         public void UpdateServer(GameServer server)
         {
@@ -157,11 +167,6 @@ namespace ICOM.TGSM.Service.Agent
         {
             return new Tuple<int, int>(List.Servers.Max(s => s.Port) + 1, List.Servers.Max(s => s.QueryPort) + 1);
         }
-
-
-
-
-
 
         private string GetNewServerDirectory(string ServerBasePath, ServerTypeEnum ServerType)
         {

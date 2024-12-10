@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ICOM.TGSM.Models.Agent\ICOM.TGSM.Models.Agent.csproj" />
     <ProjectReference Include="..\ICOM.TGSM.Models\ICOM.TGSM.Models.csproj" />
     <ProjectReference Include="..\ICOM.TGSM.Service\ICOM.TGSM.Service.csproj" />
   </ItemGroup>

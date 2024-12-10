@@ -35,6 +35,8 @@ namespace GameServerManager.Data
                     return 0;
                 case (ServerTypeEnum)2:
                     return 0;
+                case (ServerTypeEnum)3:
+                    return _db.GetCollection<GameServer>(GlobalConstants.GameServerCollectionName).Insert((ArmaServer)server);
                 default:
                     return 0;                    
             }

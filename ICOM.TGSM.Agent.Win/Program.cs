@@ -1,4 +1,7 @@
+using GameServerManager.Data;
+using GameServerManager.Models.Options;
 using ICOM.TGSM.Agent.Win;
+using ICOM.TGSM.Service.Agent;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +19,14 @@ builder.WebHost.ConfigureKestrel(o =>
 {
     o.ListenAnyIP(5000);
 });
-builder.Services.AddHostedService<AgentService>();
+builder.Services.Configure<LiteDbOptions>(builder.Configuration.GetSection("LiteDbOptions"));
+builder.Services.AddSingleton<LiteDbContext>();
+builder.Services.AddScoped<GameServerService>();
+builder.Services.AddScoped<GameServerRepository>();
+builder.Services.AddScoped<SteamCMDService>();
+builder.Services.AddScoped<ProcessService>();
+
+//builder.Services.AddHostedService<AgentService>();
 
 var app = builder.Build();
 
